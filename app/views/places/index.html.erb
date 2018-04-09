@@ -9,12 +9,19 @@
       <small><%= place.user.email %></small>
     <% end %>
 
+   
+  
+
   </div>
 
 
-
+  <div class="paginate">
+    <%= will_paginate @places, :inner_window => 1 , list_classes: %w(pagination justify-content-end)%>
+  </div> 
+ 
+ 
   
-  <%= will_paginate @places, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+  
 
 <% end %>
 
