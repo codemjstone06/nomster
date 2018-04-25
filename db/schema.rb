@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180424003706) do
+ActiveRecord::Schema.define(version: 20180425023618) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,13 +26,38 @@ ActiveRecord::Schema.define(version: 20180424003706) do
     t.index ["user_id", "place_id"], name: "index_comments_on_user_id_and_place_id", using: :btree
   end
 
-  create_table "photos", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.binary   "data",       null: false
-    t.string   "filename"
-    t.string   "mime_type"
+  create_table "photo_twos", force: :cascade do |t|
+    t.string   "title"
+    t.text     "caption"
+    t.integer  "user_id"
+    t.integer  "place_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["place_id"], name: "index_photo_twos_on_place_id", using: :btree
+    t.index ["user_id", "place_id"], name: "index_photo_twos_on_user_id_and_place_id", using: :btree
+  end
+
+  create_table "photos", force: :cascade do |t|
+    t.string   "name",              null: false
+    t.binary   "data",              null: false
+    t.string   "filename"
+    t.string   "mime_type"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+  end
+
+  create_table "pictures", force: :cascade do |t|
+    t.text     "caption"
+    t.integer  "user_id"
+    t.integer  "place_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["place_id"], name: "index_pictures_on_place_id", using: :btree
+    t.index ["user_id", "place_id"], name: "index_pictures_on_user_id_and_place_id", using: :btree
   end
 
   create_table "places", force: :cascade do |t|
