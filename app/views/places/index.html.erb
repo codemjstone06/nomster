@@ -4,7 +4,6 @@
     <i><%= place.address %></i><br /><br />
     <p><%= place.description %></p><br />
   
-
     <% if place.user.present? %>
       <small><%= place.user.email %></small>
     <% end %>
@@ -21,17 +20,19 @@
       </div>
     <% end %>
 
+<% if place.pictures.present? %>
+    <div class= "col-12">
+      <% if place.pictures.last.present? %>
+        <%= image_tag place.pictures.last.foto, class: 'img-fluid index-img' %>
+      <% end %>
+    </div>
+  <% end %>
   </div>
-
 
   <div class="paginate">
     <%= will_paginate @places, :inner_window => 1 , list_classes: %w(pagination justify-content-end)%>
   </div> 
  
- 
-  
-  
-
 <% end %>
 
 
