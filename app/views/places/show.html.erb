@@ -70,7 +70,7 @@
    <div class="row">
      <div class="col-10 offset-1">
        <% @place.pictures.each do |picture| %>
-         <%= image_tag picture.photo, class: 'img-fluid rounded mx-auto photo' %>
+         <%= image_tag picture.foto, class: 'img-fluid rounded mx-auto photo' %>
          <blockquote class="caption-text">
          <b><%= picture.caption %></b>
          </blockquote>
@@ -83,20 +83,7 @@
     
   </div>
 
-  <div class="clear"></div>
-  <div class="row">
-    <% @place.comments.each do |comment| %>
-      <div class="col-12 col-sm-6">
-        <blockquote>
-          <% if comment.humanized_rating.present? %>
-            <b><%= comment.humanized_rating %></b> -
-          <% end %>
-          <%= comment.message %>
-          <small><%= comment.user.email %></small>
-        </blockquote>
-    </div>
-  <% end %>
-  </div>
+  
 
 
 <!-- Modal Pic -->
@@ -111,7 +98,7 @@
       </div>
       <div class="modal-body">
       <%= simple_form_for @picture, url: place_pictures_path(@place) do |f| %>
-      <%= f.input :photo, label: false %>
+      <%= f.input :foto, label: false %>
       <%= f.input :caption %>
     </div>
     <div class="modal-footer">
@@ -131,6 +118,20 @@
   Add a comment
 </button>
 </div>
+
+<div class="clear"></div>
+  <div class="row">
+    <% @place.comments.each do |comment| %>
+      <div class="col-12 col-sm-6">
+        <blockquote>
+          <% if comment.humanized_rating.present? %>
+            <b><%= comment.humanized_rating %></b> -
+          <% end %>
+          <%= comment.message %>
+          <small><%= comment.user.email %></small>
+        </blockquote>
+    </div>
+  <% end %>
 
 <br />
 <br />
@@ -163,6 +164,7 @@
 <br />
 
 
+  </div>
 
 
 
